@@ -2,6 +2,9 @@ module.exports = {
     Query: {
         async tasks(_, __, { dataSources, user_id }) {
             return await dataSources.TasksRegisterService.getTasks(user_id)
+        },
+        async task(_, { id }, { dataSources, user_id }) {
+            return await dataSources.TasksRegisterService.getTaskById(user_id, id)
         }
     },
 
