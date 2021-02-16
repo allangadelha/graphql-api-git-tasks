@@ -11,7 +11,15 @@ const server = new ApolloServer({
         GitHubService: GitHubService,
         UserRegisterService: UserRegisterService,
         TasksRegisterService: TasksRegisterService
-    })
+    }),
+
+    context: ({ req }) => {
+        const user_id = req.headers.authorization
+
+        return {
+            user_id
+        }
+    }
 })
 
 server.listen().then(({ url}) => console.log(`🔥 ${url} 🌟  `))
